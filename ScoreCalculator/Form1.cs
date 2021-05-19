@@ -1,6 +1,6 @@
 ﻿//Mohammad Jokar-Konavi and Behrooz Kazemi
 //05/18/2021
-//Extra exercise 8-1
+//Extra exercise 8-2
 
 
 using System;
@@ -22,9 +22,9 @@ namespace ScoreCalculator
             InitializeComponent();
         }
 
-        //int total = 0;
-        int count = 0;
-        int[] scoresArray = new int[20];
+        //Declaration of the list
+        List<int> scoresList = new List<int>();
+        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -34,18 +34,19 @@ namespace ScoreCalculator
                 {
                     int score = Convert.ToInt32(txtScore.Text);
 
-                    scoresArray[count] = score;
-                    count++;
-
+                    //Adding score to the list
+                    scoresList.Add(score);
+                    
+                    //Calculating the total and average
                     int total = 0;
-                    foreach (int s in scoresArray)
+                    foreach (int s in scoresList)
                     {
                         total += s;
                     }
-                    int average = total / count;
+                    int average = total / scoresList.Count;
 
                     txtScoreTotal.Text = total.ToString();
-                    txtScoreCount.Text = count.ToString();
+                    txtScoreCount.Text = scoresList.Count.ToString();
                     txtAverage.Text = average.ToString();
 
                     txtScore.Focus();
@@ -63,8 +64,9 @@ namespace ScoreCalculator
         {
             string scoresString = "";
 
-            Array.Sort(scoresArray);
-            foreach (int s in scoresArray)
+            //Sorting and displaying the scores
+            scoresList.Sort();
+            foreach (int s in scoresList)
                 if (s != 0)
                 {
                     scoresString += s.ToString() + "\n";
@@ -75,9 +77,8 @@ namespace ScoreCalculator
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //total = 0;
-            count = 0;
-            scoresArray = new int[20]; // replace current array with new empty array
+            // Clearing the current list
+            scoresList.Clear(); 
 
             txtScore.Text = "";
             txtScoreTotal.Text = "";
