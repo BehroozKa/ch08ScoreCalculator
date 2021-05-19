@@ -77,7 +77,7 @@ namespace ScoreCalculator
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // Replacing current list with new empty list
+            // Clearing the current list
             scoresList.Clear(); 
 
             txtScore.Text = "";
